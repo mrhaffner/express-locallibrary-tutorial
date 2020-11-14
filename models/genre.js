@@ -1,3 +1,22 @@
+// var mongoose = require('mongoose');
+
+// var Schema = mongoose.Schema;
+
+// var GenreSchema = new Schema(
+//     {
+//         name: {type: String, required: true, minlength: 3, maxlength: 100}
+//     }
+// );
+
+// GenreSchema
+//     .virtual('url')
+//     .get(() => `/catalog/genre/${this._id}`)
+
+// module.exports = mongoose.model('Genre', GenreSchema);
+
+
+
+
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
@@ -8,8 +27,12 @@ var GenreSchema = new Schema(
     }
 );
 
+// Virtual for bookinstance's URL
 GenreSchema
-    .virtual('url')
-    .get(() => `/catalog/genre/${this._id}`)
+.virtual('url')
+.get(function () {
+  return '/catalog/genre/' + this._id;
+});
 
+//Export model
 module.exports = mongoose.model('Genre', GenreSchema);
